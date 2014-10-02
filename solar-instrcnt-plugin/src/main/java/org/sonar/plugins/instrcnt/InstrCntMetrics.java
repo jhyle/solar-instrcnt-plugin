@@ -10,7 +10,7 @@ import com.google.common.collect.ImmutableList;
 
 public class InstrCntMetrics implements Metrics
 {
-	public static final Metric NORI = new Metric.Builder("reachable_instructions", "NORI", Metric.ValueType.INT)
+	public static final Metric NORI = new Metric.Builder("reachable_instructions", "Reachable instructions", Metric.ValueType.FLOAT)
 		.setDescription("Number of reachable instructions via the flow graph starting from an entry point.")
 		.setDomain(CoreMetrics.DOMAIN_SIZE)
 		.setQualitative(false)

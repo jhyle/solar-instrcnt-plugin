@@ -10,6 +10,6 @@ public class InstrCntPlugin extends SonarPlugin
 {
 	public List<?> getExtensions()
 	{
-		return ImmutableList.of(InstrCntSensor.class);
+		return ImmutableList.of(InstrCntSensor.class, InstrCntMetrics.class);
 	}
 }

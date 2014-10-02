@@ -109,4 +109,14 @@ class MethodSignature
 	{
 		return params;
 	}
+
+	@Override
+	public String toString() 
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("MethodSignature [className=").append(className)
+				.append(", methodName=").append(methodName).append(", params=")
+				.append(params).append("]");
+		return builder.toString();
+	}
 }
