@@ -17,6 +17,9 @@ Additionally you have to make sure that the sonar-project.properties of the
 project to measure sets the path to the binaries via sonar.libraries and
 sonar.binaries as this plugin works on compiled bytecode.
 
+After running the analysis you can make the measurement visible on your
+dashboard by adding a custom widget.
+
 ## Motivation
 
 For measuring developer performance as X per time usually lines of code is
