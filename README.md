@@ -46,4 +46,7 @@ has some limitations as it is not possible to
 * know the types of properties initialized by reflection
 
 The latter is probably a problem for programs that are tied together by IoC.
-Ideas how this can be solved are welcome.
+If you have thoughts on this please share them with me.
+
+Another issue is how to count loops. Right now they are just counted once
+but maybe there is a better way to account them. 
