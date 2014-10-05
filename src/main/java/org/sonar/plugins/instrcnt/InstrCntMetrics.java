@@ -10,14 +10,14 @@ import com.google.common.collect.ImmutableList;
 
 public class InstrCntMetrics implements Metrics
 {
-	public static final Metric NORI = new Metric.Builder("reachable_instructions", "Reachable instructions", Metric.ValueType.FLOAT)
-		.setDescription("Number of reachable instructions via the flow graph starting from an entry point.")
+	public static final Metric NOEI = new Metric.Builder("executed_instructions", "Executed instructions", Metric.ValueType.FLOAT)
+		.setDescription("Number of executed instructions starting from an entry point.")
 		.setDomain(CoreMetrics.DOMAIN_SIZE)
 		.setQualitative(false)
 		.create();
 
 	public List<Metric> getMetrics()
 	{
-		return ImmutableList.of(NORI);
+		return ImmutableList.of(NOEI);
 	}
 }

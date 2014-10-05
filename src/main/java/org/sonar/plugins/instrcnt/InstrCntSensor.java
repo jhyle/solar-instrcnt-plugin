@@ -36,7 +36,7 @@ public class InstrCntSensor implements Sensor
 	
 	public void describe(SensorDescriptor descriptor)
 	{
-		descriptor.name("InstructionCountSensor").provides(InstrCntMetrics.NORI).workOnLanguages("java");
+		descriptor.name("InstructionCountSensor").provides(InstrCntMetrics.NOEI).workOnLanguages("java");
 	}
 
 	public void execute(SensorContext context) 
@@ -59,6 +59,6 @@ public class InstrCntSensor implements Sensor
 			nori = nori.add(program.count(pckg));
 		}
 
-		context.addMeasure(context.measureBuilder().forMetric(InstrCntMetrics.NORI).onProject().withValue(nori.doubleValue()).build());
+		context.addMeasure(context.measureBuilder().forMetric(InstrCntMetrics.NOEI).onProject().withValue(nori.doubleValue()).build());
 	}
 }

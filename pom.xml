@@ -8,7 +8,7 @@
   <version>0.1-SNAPSHOT</version>
 
   <name>Instruction Count</name>
-  <description>Calculates the size of a java program by counting the reachable instructions of the flow graph.</description>
+  <description>Calculates the size of a java program by counting the executed instructions of the flow graph.</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

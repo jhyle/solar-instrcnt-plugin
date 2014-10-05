@@ -1,8 +1,8 @@
-# Sonarqube Plugin: Number of Reachable Instructions (NORI)
+# Sonarqube Plugin: Number of Executed Instructions
 
-This plugin for Sonarqube counts the number of reachable instructions of a
+This plugin for Sonarqube counts the number of executed instructions of a
 java program starting from one ore more entry points. This is achived by a
-static data flow analysis on the programs flow graph via Soot.
+static flow analysis on the programs execution graph via Soot.
 
 ## Installation
 
@@ -25,18 +25,18 @@ can be healed by shared formating rules it depends a lot on general coding
 style and the don't-repeat-yourself principle. Notably lines of code
 decreases when similar code is refactored.
 
-The intuition behind "Reachable instruction count" is that the "size" of a
-program is the number of instructions that is executable via all pathes of
+The intuition behind the "executed instruction count" is that the "size" of a
+program is the number of instructions that is executable via all paths of
 the flow graph. This should be what a program "can do". Using the static
 single assignment form of the flow graph generated from the compiled byte
 code makes sure that the count is coding style independent. Stepping
 through the code instruction-by-instructions recounts a method every time
 it is called so refactoring to use shared code does not decrease the
-size of the program / the reachable instructions count.
+size of the program / the executed instructions count.
 
 As the instructions from libraries used, e.g. the java runtime, would mostly
 dominate the instruction count the measurement is limited to a package
-that is expeceted be the root of the program measured.
+that is expected be the root of the program measured.
 
 ## Limitations
 
