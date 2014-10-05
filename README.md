@@ -1,10 +1,10 @@
-Sonarqube Plugin: Count reachable instructions
+# Sonarqube Plugin: Number of Reachable Instructions (NORI)
 
-This plugins counts the number of reachable instructions of a package of a
+This plugin for Sonarqube counts the number of reachable instructions of a
 java program starting from one ore more entry points. It does this doing a
 static data flow analysis on the programs execution graph via Soot.
 
-Installation
+## Installation
 
 Download the sources and compile them with maven (mvn package). Then copy the
 jar file in target to the extensions/plugins directory of your Sonarqube
@@ -17,7 +17,7 @@ Additionally you have to make sure that the sonar-project.properties of the
 project to measure sets the path to the binaries via sonar.libraries and
 sonar.binaries as this plugin works on compiled bytecode.
 
-Motivation
+## Motivation
 
 For measuring developer performance as X per time usually lines of code is
 taken as X although it has a couple of problems. Besides code formating which
@@ -34,7 +34,11 @@ through the code instruction-by-instructions recounts a method every time
 it is called so refactoring to use shared code does not decrease the
 size of the program / the reachable instructions count.
 
-Limitations
+As the instructions from libraries used, e.g. the java runtime, would mostly
+dominate the instruction count the measurement is limited to a package
+that is expeceted be the root of the program measured.
+
+## Limitations
 
 Abstract, interfaces and overridden methods have to be resolved to the actual
 executed methods, just like the VM has to do it. This can be done by tracking
@@ -49,4 +53,4 @@ The latter is probably a problem for programs that are tied together by IoC.
 If you have thoughts on this please share them with me.
 
 Another issue is how to count loops. Right now they are just counted once
-but maybe there is a better way to account them. 
+but maybe there is a better way to handle them. 
