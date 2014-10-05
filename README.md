@@ -2,7 +2,7 @@
 
 This plugin for Sonarqube counts the number of reachable instructions of a
 java program starting from one ore more entry points. This is achived by a
-static data flow analysis on the programs execution graph via Soot.
+static data flow analysis on the programs flow graph via Soot.
 
 ## Installation
 
