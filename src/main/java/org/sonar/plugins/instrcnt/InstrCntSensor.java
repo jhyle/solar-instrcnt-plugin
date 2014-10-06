@@ -6,10 +6,10 @@ import java.math.BigInteger;
 import org.apache.commons.lang.StringUtils;
 import org.sonar.api.Properties;
 import org.sonar.api.Property;
-import org.sonar.api.batch.sensor.Sensor;
-import org.sonar.api.batch.sensor.SensorContext;
-import org.sonar.api.batch.sensor.SensorDescriptor;
+import org.sonar.api.batch.Sensor;
+import org.sonar.api.batch.SensorContext;
 import org.sonar.api.config.Settings;
+import org.sonar.api.resources.Project;
 
 @Properties({
 		@Property(key="sonar.plugins.instrcnt.entrypoints", name="Entry points", global = false, project = true, multiValues = true, description = "provide one or more starting points for counting, e.g. com.jhyle.instrcount.InstrCount.main(java.lang.String[])"),
@@ -34,12 +34,7 @@ public class InstrCntSensor implements Sensor
 		return getClass().getSimpleName();
 	}
 	
-	public void describe(SensorDescriptor descriptor)
-	{
-		descriptor.name("InstructionCountSensor").provides(InstrCntMetrics.NOEI).workOnLanguages("java");
-	}
-
-	public void execute(SensorContext context) 
+	public void analyse(Project module, SensorContext context) 
 	{
 		String pckg = settings.getString("sonar.plugins.instrcnt.package");
 		if (StringUtils.isEmpty(pckg)) return;
@@ -52,13 +47,18 @@ public class InstrCntSensor implements Sensor
 			cp += File.pathSeparator + path;
 		}
 
-		BigInteger nori = BigInteger.ZERO;
+		BigInteger noei = BigInteger.ZERO;
 		for (String entry : settings.getStringArray("sonar.plugins.instrcnt.entrypoints")) {
 			MethodSignature entrypoint = new MethodSignature(entry);
 			JavaProgram program = new JavaProgram(cp, entrypoint);
-			nori = nori.add(program.count(pckg));
+			noei = noei.add(program.count(pckg));
 		}
 
-		context.addMeasure(context.measureBuilder().forMetric(InstrCntMetrics.NOEI).onProject().withValue(nori.doubleValue()).build());
+		context.saveMeasure(InstrCntMetrics.NOEI, noei.doubleValue());
+	}
+
+	public boolean shouldExecuteOnProject(Project project)
+	{
+		return true;
 	}
 }
